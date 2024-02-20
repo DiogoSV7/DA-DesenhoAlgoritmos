@@ -107,7 +107,7 @@ SLIDES : TÊM IMAGENS A MOSTRAR ESTE ALGORITMO
   1. Soma de todos os objetos não pode exceder o peso limite "W".
   2. Solução ótima tem de encher o saco inteiro "soma XiWi = W".
 
-  -*function* fillUpKnapsackGreedy(v,w,W):
+  -function fillUpKnapsackGreedy(v,w,W):
   - weight=0;
   - while weight < W do:
       - select element i with max(Vi/Wi)
@@ -168,13 +168,15 @@ IMPORTANTE : length do código do caracter = profundidade do caracter na àrvore
 ### Huffman Greedy Prova por Contradição da Otimalidade
 
   *Teorema:* Existe um prefix-free code para C que os códigos x e y, com menos frequências, têm a mesma length e diferem apenas no último bit.
+  
   *Prova por contradição*
-      1. Assumir que T é ótimo, mas x e y não têm a mesma code length, ou seja, a sua profundidade na àrvore é diferente.
-      2. Então, T teria dois simbolos b e c na sua máxima profundidade
-      3. Assumir que f[b] <= f[c] e que f[x]<=f[y]. Como x e y têm frequências menores, podemos afirmar que f[x]<=f[b] e f[y]<=f[c].
-      4. Como b e c se encontram na profundidade máxima, dT(b) >= dT(x) e dT(c)>= dT(y). Para além disso, f[b] - f[x] >=0 e dT(b) - dT(x) >=0. (dT é depth of tree)
-      5. Deste modo, podemos criar uma árvore T´ trocando as posições x e b na T e outra T´´nas quais trocamos as posições c e y.
-      6. Nestas novas àrvores B(T)>= B(T´) e B(T´)>=B(T´´) é uma contradição, uma vez que a árvore T é ótima.
+  
+      - Assumir que T é ótimo, mas x e y não têm a mesma code length, ou seja, a sua profundidade na àrvore é diferente.
+      - Então, T teria dois simbolos b e c na sua máxima profundidade
+      - Assumir que f[b] <= f[c] e que f[x]<=f[y]. Como x e y têm frequências menores, podemos afirmar que f[x]<=f[b] e f[y]<=f[c].
+      - Como b e c se encontram na profundidade máxima, dT(b) >= dT(x) e dT(c)>= dT(y). Para além disso, f[b] - f[x] >=0 e dT(b) - dT(x) >=0. (dT é depth of tree)
+      - Deste modo, podemos criar uma árvore T´ trocando as posições x e b na T e outra T´´nas quais trocamos as posições c e y.
+      - Nestas novas àrvores B(T)>= B(T´) e B(T´)>=B(T´´) é uma contradição, uma vez que a árvore T é ótima.
 
     IMPORTANTE : Esta prova aplica-se apenas a um par de nós, os que têm menor frequências. Para fazermos para o resto dos nós teriamos de utilizar indução.
     
