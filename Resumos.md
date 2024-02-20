@@ -169,7 +169,7 @@ IMPORTANTE : length do código do caracter = profundidade do caracter na àrvore
 
   *Teorema:* Existe um prefix-free code para C que os códigos x e y, com menos frequências, têm a mesma length e diferem apenas no último bit.
   
-  *Prova por contradição*
+  *Prova por contradição:*
   
       1. Assumir que T é ótimo, mas x e y não têm a mesma code length, ou seja, a sua profundidade na àrvore é diferente.
       2. Então, T teria dois simbolos b e c na sua máxima profundidade
