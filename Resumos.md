@@ -180,9 +180,66 @@ IMPORTANTE : length do código do caracter = profundidade do caracter na àrvore
 
     IMPORTANTE : Esta prova aplica-se apenas a um par de nós, os que têm menor frequências. Para fazermos para o resto dos nós teriamos de utilizar indução.
     
+## Maximum Flow Algorithms
 
+### Maximum Flow - Definitions
 
+  - Flow Networks = Directed graph em que cada edge(u,v) tem capacidade c(u,v)>0
+  
+  - 2 nós especiais = Source *s* e Sink *t*
+  
+  - Todos os nós pertencem a um caminho de *s* para *t*
+  
+  - Flow Value = Somatório de f(s,v)
 
+  - Max Flow Prob = Computar o max flow entre *s* e *t*
 
+### Ford-Fulkerson Method
 
+  *Ford-Fulkerson-Method(graph G, node s, node t){*
+    - inicializar flow f a 0;
+    - while (existir augmenting path P) do:
+        - aumentar o flow ao longo de P;
+        - atualizar a residual network;
+    -return f;
 
+NOTAS: 
+  - augmenting path são caminhos que "vão para a frente"
+  - residual network é o conceito do path que nós estamos a seguir
+
+### Residual Network
+
+  - Residual capacity = o flow adicional que é possível enviar entre u e v:
+       $ Cf(u,v) = C(u,v) - F(u,v);
+  - Residual Network de um grafo G = cada edge(residual) do grafo apenas pode ter um flow positivo
+
+### Cuts e Flows numa Flow Network
+
+  $ Liquido Cut Flow - quantidade de flow que pode ser cortado
+  $ Cut capacity - Apenas inclui valores positivos de capacity edges
+
+TRUQUE: Desenhando a linha do corte, se a linha apontar para dentro (t) é positivo, se apontar para fora da linha, é negativo
+
+IMPORTANTE: Qualquer valor de flow é upper bounded pela capacidade de qualquer cut em G
+
+### Ford-Fulkerson Basic Algorithm
+
+*Ford-Fulkerson(Graph G, node s, node t){*
+  - foreach(u,v) que pertence a G, do:
+        - f[u,v] =0;
+        - f[v,u]=0;
+  - while exists augmen path P numa residual network G do:
+        -computar Cf(p):
+        -foreach(u,v) que pertence a P do:
+            - f[u,v] = f[u,v] + Cf(p)   (aumentar flow value)
+            - f[u,v] = f[v,u] - Cf(p)   (aumentar o reverse flow)
+
+### Análise do Basic Algorithm
+
+  Para valores irracionais, cujos computadores não são capazes de utilizar:
+    - O algoritmo pode nunca terminar ou pode converger para um valor incorreto.
+
+### Edmonds-Karp Algorithm
+
+OBJETIVO : Encontrar augmenting paths utilizando o shortest path
+    
