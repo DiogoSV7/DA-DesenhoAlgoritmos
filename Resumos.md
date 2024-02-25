@@ -247,8 +247,27 @@ IMPORTANTE: Qualquer valor de flow é upper bounded pela capacidade de qualquer 
 
   Para valores irracionais, cujos computadores não são capazes de utilizar:
     - O algoritmo pode nunca terminar ou pode converger para um valor incorreto.
+    - Complexidade do algorítmo é O(E |f*|).
 
 ### Edmonds-Karp Algorithm
 
 OBJETIVO : Encontrar augmenting paths utilizando o shortest path
-    
+
+### Análise do Edmonds-Karp Algorithm
+
+Distância de s para u aumenta, no mínimo 2 unidades cada vez que edge(u,v) é critica. Uma edge é crítica se residual capacity de p for a mesma que a edge capacity.
+
+- No limite, distancia entre *s* e *u* não pode ser maior do que |V|-2.
+- No máximo, uma edge pode ser no máximo O(V) vezes.
+- Existem O(E) pares de vértices.
+- Complexidade de Edmonds-Karp é O(V E^2).
+
+### Maximal Bipartite Matching
+
+Undirected graph G = (V,E)
+
+- Basicamente, é o problema das danças dos meninos e meninas que o professor usou
+- Maximal Bipartite Matching em G é equivalente a encontrar o máx flow em G´
+- Utilizar o método genérico do Ford-Fulkerson algorithm leva a uma complexidade de O(E |f*|)
+- A complexidade de maximal bipartite matching é O(V E)
+  
