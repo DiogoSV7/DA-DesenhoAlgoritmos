@@ -270,4 +270,141 @@ Undirected graph G = (V,E)
 - Maximal Bipartite Matching em G é equivalente a encontrar o máx flow em G´
 - Utilizar o método genérico do Ford-Fulkerson algorithm leva a uma complexidade de O(E |f*|)
 - A complexidade de maximal bipartite matching é O(V E)
+
+## Minimum Cost Spanning Trees
+
+### Definição de Spanning Tree
+
+* Um grafo undirected é cnectado se para cada par de vértices existe, no mín, um "path" a conectar os 2 vértices.
+
+* Dado um grafo undirected e conectado, a spanning tree é um subset acíclico de edges que conecta todos os vértices no grafo
+
+* Numa spanning tree, o seu custo é a soma de todos os custos associados a cada uma das suas edges
+
+### Minimum Cost Spanning Tree (MST)
+
+É uma spanning tree, cuja soma de todos os pesos das suas edges seja mínimo.
+
+### Brute-Force Algoithm para implementar MST
+
+1. O algoritmo de brute-force trata de primeiro gerar todas as spanning trees possíveis.
+2. Para cada uma destas spanning trees calcular o seu custo
+3. Selecionar a que tem o menor custo
+
+!!! Não é uma boa approach, uma vez que o número de árvores pode ser muito grande
+
+### Greedy Approach para construir uma MST
+
+- Manter uma subset tree A do grafo G
+- Cada aresta (u,v) adicionada a A tem de ser:
+      - A U {(u,v)} tem de continuar a ser um subset tree A
+      - Não pode criar cíclos, ou seja, é uma safe edge
+
+*ALGORITMO*
+
+  1. Criar um subset vazio;
+  2. Enquanto este subset não é uma spanning tree:
+       3. Identificar safe edge(u,v);
+       4. Adicionar ao subset A
+  5. Retornar spanning tree A;
+
+<img width="499" alt="Captura de ecrã 2024-03-02, às 12 39 46" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/a30e72be-aa60-4bb1-8d4c-17407213bc0c">
+
+### Definições MST
+
+* CUT (S, V-S) - Um *CUT* de um undirected graph é uma partição dos vértices para sets disjuntos de nós
+
+* Se uma aresta atravessar um corte, um dos seus nós tem de ficar em S e outro em V-S
+
+* Um corte contem o set de vértices A, se nenhuma aresta atravessar o corte
+
+* Uma aresta que atravesse o corte com o menor custo, é designada como "aresta leve"
+
+* Uma aresta é "safe edge" se não criar nenhum cíclo
+
+### MST Construction Properties
+
+* MST´s devem verificar 2 propriedades muito úteis:
+
+  1. *Cycle Property* : A aresta mais pesada de um cíclo nunca é utilizada
+
+  2. *Cut Property* : Num corte entre 2 sets, a aresta que os irá ligar é a mais leve
+ 
+
+### Prova de Otimilidade de MST
+
+*PRESSUPOSTO*
+- G é um undirected e connected graph com uma função de peso das arestas w;
+
+*PROVA*
+
+1. Dado que (u,v) atravessa o (S, V-S) a sua adição a A não cria um cíclo, uma vez que tanto u ou v não estão ambos em S ou V-S e o corte contem A.
+
+2. O resultado de adicionar (u,v) a A seria o com menor custo:
+3. Se existisse uma aresta (x,y) com menor custo, essa aresta também atrevessaria o corte
+4. Deste modo, a àrvore que escolhemos não seria ótima porque existiria uma aresta com menor custo
   
+### Kruskal´s Algorithm
+
+*IDEIA PRINCIPAL* : 
+
+1. Começar com cada nó isolado como o seu próprio cluster
+2. Escolher a aresta mais leve que ligue 2 clusters
+3. Continuar ate |V| -1 arestas são adicionadas
+
+<img width="470" alt="Captura de ecrã 2024-03-02, às 12 53 33" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/2139801c-f2f6-4406-9971-f4856a40acbd">
+
+### Complexidade Temporal do Kruskal´s Algorithm
+
+* Inicialização : O(E log E) devido ao sort() das suas edges
+* Construção : Utilizar listas para representar cada set O(E V)
+
+### Prim´s Algorithm
+
+*IDEIA PRINCIPAL*
+
+* Construir uma MST a partir Root node:
+  - Começa com um nó ROOT
+  - Expande a árvore, uma aresta de cada vez
+  - A cada iteração do algoritmo escolhe a LIGHTEST SAFE EDGE
+
+* Utilizar uma priority queue
+* key[v] -> lowest edge weight a conectar v a um nó da árvore
+* pred[v] -> precedente de v na árvore
+
+<img width="554" alt="Captura de ecrã 2024-03-02, às 13 00 07" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/f85f92f8-ac8b-427f-b233-456bacb8f55d">
+
+### Complexidade do Prim´s Algorithm
+
+* Complexidade do algoritmo é O(E log V)
+
+* NÃO EXISTE GRANDE DIFERENÇA ENTRE UTILIZAR KRUSKAL´S OU PRIM´S ALGORITHM
+
+## Shortest Paths
+
+### Variedades de Shortest Path Problems
+
+* SINGLE SOURCE SHORTEST PATH (SSSP):
+    - Identificar caminho mais curto entre o nó source S e outro qualquer nó V
+ 
+* SINGLE-DESTINATION SHORTEST PATH:
+    - Identificar o caminho mais curto entre qualquer nó V e um nó sink T
+ 
+* SINGLE-PAIR SHORTEST PATHS:
+    - Identificar o caminho mais curto entre dois nós U e V
+ 
+* ALL-PAIRS SHORTEST PATHS(APSP´s):
+    - Identificar o caminho mais curto entre cada par de nós em V ( cojunto de vértices do grafo ).
+
+### Relaxação de uma aresta
+
+<img width="547" alt="Captura de ecrã 2024-03-02, às 13 07 28" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/1f2b3ca0-c057-4c8b-95e4-42348af2015f">
+
+!!! A dist[w] não pode aumentar
+
+### Outline do Djikstra´s Algorithm
+
+*IDEIA PRINCIPAL* 
+
+
+
