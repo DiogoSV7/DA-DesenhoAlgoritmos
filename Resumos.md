@@ -402,9 +402,46 @@ Undirected graph G = (V,E)
 
 !!! A dist[w] não pode aumentar
 
-### Outline do Djikstra´s Algorithm
+### Outline do Djikstra´s Algorithm (Greedy Approach)
 
 *IDEIA PRINCIPAL* 
+
+  * Manter um set de nós explorados S, dos quais temos de calcular a shortest path distance de s até u.
+  * Inicializar o set S com um ponto S.
+  * Distância de (s) =0, a distância de todos os outros pontos é infinita
+  * Repetidamente escolher nós unexplored que tenham uma distância mínima e adicioná-los ao set S.
+  * Utilizar uma priority queue para refletir a relaxação da aresta mais recente
+
+### Pseudo-Código do Dijkstra´s 
+
+<img width="643" alt="Captura de ecrã 2024-03-03, às 16 59 55" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/9876c011-7b43-4541-ab9c-aa049db88f3a">
+
+### Complexidade do Dijkstra´s
+
+RESPOSTA : *O((V+E) log V)*
+
+### Ciclos com Pesos Negativos
+
+* Arestas podem apresentar pesos negativos
+* Um cíclo pode chegar a uma soma de pontos que tenha um valor negativo
+* Se os nós em um ciclo negativo forem alcançáveis através de S, temos de colocar a sua distância a -infinito
+
+!!! Uma vez que o Djikstra´s não consegue lidar com arestas com peso negativo, temos de utilizar o Bellman-Ford-Moore algortihm, que tolera arestas negativas e reporta-as retornando um erro
+
+## Bellman-Ford-Moore Algorithm
+
+* Também é baseado em relaxação de arestas
+* Mantém distância associada a cada nó
+* COMPLEXIDADE TEMPORAL É MAIOR DO QUE A DE DJIKSTRA´S
+
+### Bellman-Ford-Moore Algorithm Pseudo-Code
+
+<img width="628" alt="Captura de ecrã 2024-03-03, às 17 05 46" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/082aa4c0-3369-443f-8c96-0a7d9ac83e58">
+
+!!! INICIALIZE SINGLE SOURCE É UM BOCADO PARECIDO COM O OUTRO
+
+<img width="622" alt="Captura de ecrã 2024-03-03, às 17 07 24" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/970668c7-bddd-4eeb-ade9-728da4c608a1">
+
 
 
 
