@@ -39,6 +39,16 @@ You will need to reason about the use of the Brute-Force approach in the develop
 
 <img width="318" alt="Captura de ecrã 2024-03-06, às 16 55 45" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/ab6e2c18-9c41-445c-bc55-378f5c6d26c9">
 
+## Utilização do Brute-Force em criação de Minimum Spanning Trees
+
+  1. O algoritmo de brute-force trata de primeiro gerar todas as spanning trees possíveis.
+
+  2. Para cada uma destas spanning trees calcular o seu custo
+
+  3. Selecionar a que tem o menor custo
+
+!!! Não é uma boa approach, uma vez que o número de árvores pode ser muito grande
+
 
 # Greedy Algorithms 
 
@@ -81,11 +91,57 @@ You will need to reason about the use of the Brute-Force approach in the develop
 
 **IMPORTANTE** - No teste temos de ser capazes de receber um exercício de Fractional Knapsack e ser capazes de determinar o outcome do algorítmo na sequência de itens selecionados
 
+## Greedy Approach a construir uma MST
+
+  1. Manter um subset da árvore **A** do grafo **G**
+  2. Identificar a **edge(u,v)** que adicionada  a **A** ainda seja:
+       - A união de **A** com a edge ainda seja um subset de **A**
+       - Não crie nenhum cíclo, ou seja, seja uma **safe edge**
+
+
 ## Minimum-Cost Spanning Tree Algos ( PRIM E KRUSKAL )
 
 **O QUE TEMOS DE SABER :**
 
- - A complexidade temporal das suas implementações
+ - A complexidade temporal das suas implementações (PRIM E KRUSKAL)
  - Exemplos dos seus usos em grafos restritos
 
-   
+**Complexidade do PRIM :** O(E log V) 
+  - Para cada aresta O(E) existe um "pior caso" um update com o custo O(log V)
+
+<img width="554" alt="Captura de ecrã 2024-03-02, às 13 00 07" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/c07a8a87-95d9-4b08-bba4-a0d1fa9c30fc">
+
+**Complexidade do KRUSKAL :** O(E log E)
+
+<img width="470" alt="Captura de ecrã 2024-03-02, às 12 53 33" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/282c4994-8cf8-4360-a01b-f4b031efcc48">
+
+ * **KRUSKAL´S Algorithm** - baseado em clusters e unir 2 cluters diferentes através da aresta mais leve
+     - Utiliza listas para representar os sets : O(E V)
+     - A sua complexidade temporal também depende muito da implementação de disjoint sets, que é a melhor estrutura de dados para um melhor desempenho do algorítmo
+
+ * **PRIM´S Algorithm** - algoritmo começa com um nó "root", expande a árvore uma aresta de cada vez, a cada iteração escolhe a aresta mais leve
+     - Utiliza um priority queue;
+     - key[v] - aresta mais leve a conectar v a um nó na árvore
+     - pred[v] - predecedor de v na árvore
+  
+## Usos importantes destes 2 Algorítmos em restricted graphs
+
+* Planeamento de Rotas
+
+* Gerenciamento da Network na presença de Falhas 
+
+## Princípios da Construção de MST
+
+* MST´s devem verificar 2 propriedades muito úteis:
+
+  1. *Cycle Property* : A aresta mais pesada de um cíclo nunca é utilizada.
+
+  2. *Cut Property* : Num corte entre 2 sets, a aresta que os irá ligar é a mais leve.
+
+* Se adicionarmos **uma** edge a uma árvore e criarmos, exatamente, um cíclo, podemos remover qualquer uma daquelas arestas e eliminarmos uma árvore.
+ 
+* Estas duas propriedades formam a base para todos os greedy algorithms de criação de MST´s.
+
+<img width="499" alt="Captura de ecrã 2024-03-02, às 12 39 46" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/8c460c18-0c95-4bb8-982c-4a9d5ce496f9">
+
+
