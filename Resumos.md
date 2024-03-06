@@ -216,6 +216,7 @@ NOTAS:
   - Residual capacity = o flow adicional que é possível enviar entre u e v:
        - Cf(u,v) = C(u,v) - F(u,v);
   - Residual Network de um grafo G = cada edge(residual) do grafo apenas pode ter um flow positivo
+    
 
 ### Cuts e Flows numa Flow Network
 
