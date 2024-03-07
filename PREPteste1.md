@@ -75,6 +75,11 @@ You will need to reason about the use of the Brute-Force approach in the develop
 
 * Não temos de saber como provar, porém, temos de conseguir demonstrar que estas propriedades existem em algoritmos pre-determinado ou um sample algorithm fornecido no teste
 
+## Prova de Correção do Greedy Algorithm 
+
+**1 -PODE-SE CHEGAR A UMA SOLUÇÃO ÓTIMA GLOBAL, INDO PELAS SOLUÇÕES ÓTIMAS LOCAIS**
+
+**2 - SOLUÇÃO ÓTIMA PARA O PROBLEMA CONTEM SOLUÇÃO ÓTIMA PARA OS SUB-PROBLEMS**
 
 ## Fractional Knapsack e Como este determina uma solução ótima
 
@@ -117,7 +122,7 @@ You will need to reason about the use of the Brute-Force approach in the develop
 
  * **KRUSKAL´S Algorithm** - baseado em clusters e unir 2 cluters diferentes através da aresta mais leve
      - Utiliza listas para representar os sets : O(E V)
-     - A sua complexidade temporal também depende muito da implementação de disjoint sets, que é a melhor estrutura de dados para um melhor desempenho do algorítmo
+     - A sua complexidade temporal também depende muito da implementação de disjoint sets, que é a melhor estrutura de dados para um melhor desempenho do algorítmo, os disjoint sets permitem facilmente juntar 2 nós e formar um componente novo.
 
  * **PRIM´S Algorithm** - algoritmo começa com um nó "root", expande a árvore uma aresta de cada vez, a cada iteração escolhe a aresta mais leve
      - Utiliza um priority queue;
@@ -144,4 +149,23 @@ You will need to reason about the use of the Brute-Force approach in the develop
 
 <img width="499" alt="Captura de ecrã 2024-03-02, às 12 39 46" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/8c460c18-0c95-4bb8-982c-4a9d5ce496f9">
 
+## Prova de Otimilidade de MST
 
+*PRESSUPOSTO*
+- G é um undirected e connected graph com uma função de peso das arestas w;
+
+*PROVA*
+
+1. Dado que (u,v) atravessa o (S, V-S) a sua adição a A não cria um cíclo, uma vez que tanto u ou v não estão ambos em S ou V-S e o corte contem A.
+
+2. O resultado de adicionar (u,v) a A seria o com menor custo:
+
+3. Se existisse uma aresta (x,y) com menor custo, e essa aresta também atrevessasse o corte
+
+4. Deste modo, a àrvore que escolhemos não seria ótima porque existiria uma aresta com menor custo
+
+
+**QUESTÃO EXISTENCIAL** - É necessário utilizar uma priority queue se todas as arestas tiverem o mesmo peso?
+
+
+# Djikstra´s
