@@ -168,4 +168,38 @@ You will need to reason about the use of the Brute-Force approach in the develop
 **QUESTÃO EXISTENCIAL** - É necessário utilizar uma priority queue se todas as arestas tiverem o mesmo peso?
 
 
-# Djikstra´s
+# Djikstra´s Algorithm 
+
+<img width="650" alt="Captura de ecrã 2024-03-09, às 18 28 06" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/2759cc6d-d27a-4dd0-85da-9680fa1e92ed">
+
+**PROBLEMA** - Djikstra´s pode não funcionar se a árvore tiver pesos negativos.
+
+**PORQUE É QUE O DJIKSTRA PRODUZ SEMPRE UMA SOLUÇÃO ÓTIMA PARA O SHORTEST PATH?** - 
+
+* Através de uma greedy approach, apenas selecionando o nó mais próximo da fonte atual, asseguramos que a cada iteração do algorítmo conseguimos extender o caminho mais curto encontrado até agora.
+
+* Para além disto, através da relaxação constante de arestas, podemos ter a certeza que estamos a tomar o caminho mais curto, podendo alterá-lo se encontrarmos uma nova opção através da relaxação de arestas
+
+## Aplicação do Dijkstra´s em DAG´s ou grafos com peso de arestas restrito
+
+**USO EM DAGS** - Assegurando que não existem cíclos, existe uma maior facilidade em desenvolver algorítmos para encontrar o caminho mais curto. Por exemplo, numa topological source, é preferível utilizar este método do que o djikstra, podendo também o grafo ser muito denso.
+
+**ARESTAS COM PESO RESTRITO** - Em grafos em que possam existir restrições quanto ao peso das arestas, é perferível utilizar, por exemplo, um BFS, como todas as arestas têm o mesmo peso, BFS assegura que encontramos o caminho mais curto, de uma maneira mais eficiente. Logo, este caso especial, de certa forma, torna o dijkstra inútil.
+
+# Bellman-Ford Algorithm
+
+* Também é baseado na relaxação de arestas
+
+* Mantem distância associada com cada nó
+
+<img width="637" alt="Captura de ecrã 2024-03-09, às 18 47 32" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/62d312ce-5d54-4e6d-9847-7968f62d0ec9">
+
+
+## Aplicabilidade no contexto de grafos com arestas que têm peso negativo
+
+* Basicamente, para todas as arestas, vamos fazer uma relaxação. Depois dessa relaxação se, conseguirmos encontrar um caminho mais curto, significa que estamos na presença de arestas negativas
+
+**SE EXISTIREM CÍCLOS NEGATIVOS** - Se o algorítmo encontrar um cíclo negativo retorna falso, dizendo que não existe um shortest path
+
+* Consegue detetar a presença de cíclos negativos, porém, não consegue produzir o caminho mais curto se estes estiverem presentes
+
