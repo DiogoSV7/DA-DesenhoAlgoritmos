@@ -303,7 +303,49 @@ Não podemos apenas adicionar o complemento para cada aresta, pois, se o fizesse
 
 * Depois apenas conectar apenas os do meio, desde que nenhum destes vértices esteja ligado a um do outro set
 
-* 
+# Divide and Conquer 
+
+<img width="814" alt="Captura de ecrã 2024-03-10, às 15 11 49" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/5f152e20-4d5c-4160-b040-2b77cc75d4d5">
+
+## Recurrence de MergeSort
+
+* A invocação do MergeSort cria uma árvore com **log n** níveis
+
+* A cada nível temos de chamar o merge que cresce linearmente a cada nível
+
+* A **recurrence T(n) = 2 T(n/2) + c n**
+
+* **SOLUÇÃO É: T(n) = k(n log n)**
+
+## Recurrence das Hanoi Towers
+
+* **Hanoi(n,A,B,C)** - Mover n discord de A para B utilizando C como temporário
+
+* Definição recursiva das Torres de Hanoi :
+
+  - **Hanoi(n,A,B,C) = Hanoi(n-1,A,C,B) + Hanoi(1,A,B,C) + Hanoi(n-1,C,B,A)**
+
+<img width="626" alt="Captura de ecrã 2024-03-10, às 15 22 52" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/77ecde77-8fef-436f-99f3-4198b50f4ad6">
+
+ 
+<img width="636" alt="Captura de ecrã 2024-03-10, às 15 21 59" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/07a58d5e-01ff-454e-aaf6-d619d18eea99">
+
+## Recurrence 
+
+* Recurrence é uma relação que define uma sequência baseada numa regra que dá o próximo termo baseando-se no termo passado.
+
+* Funciona como recursão basicamente
+
+* Temos de ter um caso base
+
+* E a chamada da recursão deve reduzir o problema até que ele acabe por alcançar o caso base
+
+<img width="631" alt="Captura de ecrã 2024-03-10, às 15 26 38" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/00e5d355-a077-46d2-9cba-82b7499e56bc">
+
+<img width="1440" alt="Captura de ecrã 2024-03-10, às 15 28 27" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/8eab0a63-4f56-44a9-9db7-47e3a87f4dcf">
+
+* STILL INCOMPLETE...
+
 
 
 
