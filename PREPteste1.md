@@ -203,3 +203,107 @@ You will need to reason about the use of the Brute-Force approach in the develop
 
 * Consegue detetar a presença de cíclos negativos, porém, não consegue produzir o caminho mais curto se estes estiverem presentes
 
+# All-Pairs Shortest Path. Utilizando Bellman-Ford e Dijkstra
+
+ * Johnson´s algorithm baseia-se em reescrever as arestas
+
+ * Ou seja, se todas as arestas tiverem tiverem pesos positivos, usamos Dijkstra
+
+## Simple Edge Weight Reassignment
+
+Não podemos apenas adicionar o complemento para cada aresta, pois, se o fizessemos, os caminhos mais longos que seriam curtos, seriam multiplamente penalizados, podendo deixar de se considerar os mais curtos
+
+**!! Utilizamos a Edge Reweighting do Johnson´s**
+
+## Edge Reweighting
+
+<img width="649" alt="Captura de ecrã 2024-03-10, às 09 46 18" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/365256f6-0e2c-4987-aa62-09a69a35e047">
+
+* O peso da aresta passa a ser : **w** (PESO ORIGINAL) + **h(u)** (shortest path ao ponto de origem da aresta) - **h(v)** (shortest path até ao ponto destino da aresta utilizando w)
+
+
+**!! É importanto saber que a shorter path w, será um shortest path com w´(caminho com edge reweighting)**
+
+**Existe um cíclo com peso negativo em w, se e só se existir também um cíclo com peso negativo em w´**
+
+<img width="640" alt="Captura de ecrã 2024-03-10, às 09 57 07" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/606a992a-383f-4550-a934-290df2f9f83c">
+
+## Complexidade : 
+
+* Bellman-Ford-Moore : O(V E)
+
+* Dijkstra para ca nó : O( V (V+E) log V)
+
+* TOTAL : O(V(V+E) log V)
+
+# Max-Flow Algorithms
+
+* Para estes algorítmos temos de ignorar self-loops e arestas múltiplas
+
+## Multiple Sources e Sinks
+
+* Para este tipo de redes, temos de definir uma **SUPER-SOURCE** e um **SUPER SINK**
+
+* Entre estas super-sources e os sinks ou sorces, estes podem fornecer uma quantidade ilimitada.
+
+## Maximum Flows Definições
+
+* Um **flow network** é um grafo direcionado com arestas com pesos positivos
+
+<img width="617" alt="Captura de ecrã 2024-03-10, às 10 04 17" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/80146347-ec0d-466d-b531-57d79d4ef620">
+
+
+## Cálculo do minimum cut capacity
+
+* Fazemos cortes nas arestas. Se arestas forem para o lado do sink são adicionadas ao valor do cut, se forem para o lado da source não acontece nada, ou seja, não subtrai ao valor do cut
+
+* **MINIMUM CUT  = MAX FLOW**
+
+## Ford-Fulkerson Max Flow Algorithm
+
+<img width="639" alt="Captura de ecrã 2024-03-10, às 10 09 05" src="https://github.com/DiogoSV7/DA---DesenhoAlgoritmos/assets/145665382/eb95c7df-2f4e-4a4b-902d-8047928a5157">
+
+* Este algorítmo vai sempre encontrando caminhos até chegar ao sink, até deixarem de existir paths que levem até ao sink (augmenting paths)
+
+## Análise da Complexidade para valores racionais de Capacidades das arestas
+
+* Convertemos as capacidades para inteiros através de scalling
+
+* Nº de augmenting paths é : | f* | (valor limitado pelo max flow)
+
+* **COMPLEXIDADE** : O(E |f*|)
+
+## Análise de Complexidade para valores iracionais de Capacidades de arestas
+
+* Para valores irracionais o algorítmo pode nunca terminar
+
+* Aliás, pode terminar e levar-nos a um valor errado
+
+## Edmonds-Karp
+
+**COMPLEXIDADE DESTE ALGORITMO : O(V E^2)**
+
+* Este algorítmo utiliza uma BFS para identificar o caminho mais curto, uma vez que cada aresta tem distância 1
+
+* Uma edge (u,v) num gráfico residual, é **crítica** se a capacidade residual de p for o mesmo que a capacidade da aresta
+
+* No máximo dos máximos, uma aresta pode ser crítica O(V) vezes
+
+# Maximal Bipartite Matching
+
+**BIPARTITE MATCHING** - Num grafo bipartido, os vértices podem ser divididos em 2 sets disjuntos, nos quais não existem arestas que unam 2 vértices dentro do mesmo set. Uma bipartite matching é um subset de arestas, nas quais nenhuma delas partilham um vértice em comum.
+
+**MAXIMAL BIPARTITE MATCHING** - é uma bipartite matching só que não pode ser mais expandida
+
+* Para encontrar o maximal bipartite matching podemos utilizar o algorítmo do max-flow
+
+* Ao utilizar o Ford-Fulkerson algorítmo leva a uma complexidade de O(E |f*|)
+
+* Ou seja, criar uma super-source e um super-sink com distâncias 1
+
+* Depois apenas conectar apenas os do meio, desde que nenhum destes vértices esteja ligado a um do outro set
+
+* 
+
+
+
