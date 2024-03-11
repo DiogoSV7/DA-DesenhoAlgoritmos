@@ -273,7 +273,7 @@ Não podemos apenas adicionar o complemento para cada aresta, pois, se o fizesse
 
 * **COMPLEXIDADE** : O(E |f*|)
 
-## Análise de Complexidade para valores iracionais de Capacidades de arestas
+## Análise de Complexidade para valores irracionais de Capacidades de arestas
 
 * Para valores irracionais o algorítmo pode nunca terminar
 
