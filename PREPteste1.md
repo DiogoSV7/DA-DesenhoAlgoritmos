@@ -345,7 +345,8 @@ Não podemos apenas adicionar o complemento para cada aresta, pois, se o fizesse
 <img width="646" alt="Captura de ecrã 2024-03-10, às 15 28 27" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/bcdb2bd1-dea3-4269-9716-4f79f35133bf">
 
 
-* STILL INCOMPLETE...
+* Master Theorem não se aplica se "c" forem coisas estranhas do género n^2/log n, porque não dá para retirar o grau
+
 
 
 
