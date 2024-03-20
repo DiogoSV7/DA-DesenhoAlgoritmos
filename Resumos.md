@@ -443,6 +443,138 @@ RESPOSTA : *O((V+E) log V)*
 
 <img width="622" alt="Captura de ecrã 2024-03-03, às 17 07 24" src="https://github.com/DiogoSV7/Resumos-Desenho-de-Algoritmos/assets/145665382/970668c7-bddd-4eeb-ade9-728da4c608a1">
 
+## Dynamic Programming
 
+### Multi-Stage Graph
 
+ * Grafo labeled e direcionado
+ * Cada aresta tem um custo e tem source e sink nodes
+ * Os vértices podem ser particionados em k>=1 disjoint sets como os bipartites
 
+### Utilizar Greedy Approach ou Divide and Conquer
+
+**DIVIDE AND CONQUER PROBLEMS:**
+
+  - Concatenação dos best paths dos sub-problemas podem não concatenar num path
+  - O melhor caminho pode ser sub obtimal em diferentes estagios do problema
+
+**GREEDY APPROACH PROBLEMS:**
+
+  - Garantido que existirá sempre um caminho viável
+  - Decisões feitas baseadas na informação local
+  - Não pode olhar para a frente e antecipar "bons" e "maus" caminhos
+
+### Minimum Cost Source to Sink Path
+
+* Enumerar todos os paths?:
+    - Recursivamente fazer DFS
+    - Computar os Custos mantendo uma stack com os vértices do caminho
+    - Guardar a com menor custo e os seus vértices
+
+* Este approach tem uma complxidade de O(m^s) , sendo m os vértices a cada stage e s o número de stages. Ou seja, é exponencial dependendo do input problem size
+
+### Princípio da Otimalidade
+
+**PRINCÍPIO** - Se uma solução é ótima, qualquer porção da mesma deve ser ótima com respeito a todas as escolhas possíveis daquela porção em particular
+
+**COROLÁRIO** - Se uma solução parcial é sub-ótima, esta não precisa de ser mais explorada
+
+### Como é que isto nos ajuda?
+
+* Suponhamos que escolhemos um path ótimo (e1,e2,e3,...,en,en+1)
+
+* Pelo princípio de otimalidade, a solução é ótima a partir de e3 até ao sink
+
+* Para encontrar um caminho ótimo usando e´1, e´2, dps podemos utilizar o caminho e3 em frente
+
+* Podemos guardar soluções parciais numa tabela para evitar recomputar soluções parciais
+
+**cost(i,j) = min{ c(j,k) + cost(i+1,k)}**
+
+Isto é computado reversamente, ou seja começamos na sink e vamos calculando inversmanete
+
+<img width="634" alt="Captura de ecrã 2024-03-20, às 10 58 24" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/136bdc36-33f7-4f6b-bca6-f8e070bcdeca">
+
+### Características de Dynamic Programming
+
+**UMA SEQUÊNCIA DE DECISÕES:**
+  - Impossível de fazer uma decisão ótima baseado nas escolhas locais
+  - Decisões são interdependentes
+  - Temos de enumerar todas as alternaticas possíveis
+
+**PRINCÍPIO DE OTIMALIDADE APLICA-SE:**
+  - Enumeração diferente de operações normalmente partilham sub-problems
+  - Guardar soluções parciais para evitar recomputação
+  - Formulação Recursiva
+  - Computação aumenta para preencher uma tabela
+
+### Procedimento de Dynamic Programming
+
+* Derivar uma equação de recurrência
+* Resolver esta equação por:
+    - Identificar casos primitivos para soluções ótimas
+    - Construir soluções iterativamente utilizando o critério de otimalidade
+    - Construir a tabela e preenchendo - a utilizando a recurrence equation e os casos primitivos
+ 
+**COMPLEXIDADE: O(V+E)** - V- número de nós e E número de arestas
+
+### Casos combinatórios
+
+<img width="641" alt="Captura de ecrã 2024-03-20, às 11 04 27" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/118cd652-e834-4dc8-bce8-e75f1fa5ae55">
+
+<img width="631" alt="Captura de ecrã 2024-03-20, às 11 05 06" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/533a8216-9af3-4420-b64e-d1a572937c5e">
+
+* Número de problemas distintos é n x k
+* Complexidade de Naive solution derivada da computação repetida de sub-problems
+
+### Cadeias de Multiplicação MATRIX-MATRIX
+
+* O tempo de multiplicação de n matrizes é denominado pelo tempo necessário para computar multiplicações escalares
+
+* Número de produtos depende da maneira em que os produtos estão organizados
+
+<img width="633" alt="Captura de ecrã 2024-03-20, às 11 20 43" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/0eccfa95-1ea9-4437-902e-bdd6b0b926be">
+
+ - Colocar o parenteses para minimizar o número de multiplicações escalares
+ - Número de parenteses possíveis cresce exponencialmente com o nº de matrizes
+
+<img width="630" alt="Captura de ecrã 2024-03-20, às 11 22 20" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/8a82002d-e00e-4908-a11a-42d79a413e3d">
+
+### Solução Recursiva
+
+ * **m[i,j]** - menor nº de multiplicações para computar matriz Ai..j
+              - Solução ótima para A1..n é m[1,n]
+              - i=j, m[i,j] = 0
+ * **s[i,j]** - define posição ótima para parenteses entre i e j
+
+<img width="637" alt="Captura de ecrã 2024-03-20, às 11 24 54" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/28c162f4-2ea5-4c45-92db-ba2de1ed146e">
+
+<img width="629" alt="Captura de ecrã 2024-03-20, às 11 31 11" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/bbaf2ff2-fc05-451f-8f5d-368147bb3563">
+
+### Integer Knapsack utilizando Dynamic Programming
+
+* A cada decisão de incluir o objeto k tem de:
+      - Considerar o uso do peso Wk e o seu valor Vk
+      - Guardar peso para outros objetos
+
+* **val[i,j]** - Define o valor máximo que é possível transportar com um peso limite j
+               - permitindo apenas objeto numerado de 1 até i estar incluido
+
+* Solução ótima é definida por **val[n,W]**
+
+  <img width="594" alt="Captura de ecrã 2024-03-20, às 11 37 48" src="https://github.com/DiogoSV7/DA-DesenhoAlgoritmos/assets/145665382/2f36d2d1-6d92-4df4-97e3-c4c5500c39b7">
+
+### Longest Common Sub-Sequence (LCS)
+
+* Dada uma sequÊncia X = x1, ..., xn, a sequência Z = z1, ..., zk é sub-sequência de X se existiruma sequência estritamente crescente de indíces
+
+* **PROBLEMA** - Encontrar longest common subsequence de duas sequências X e Y
+
+**EXEMPLO:** 
+
+* X = abefcghd
+* Y = eagbcfdh
+* X = abcd é a common subsequence de X e Y
+
+* NÃO VIÁVEL PARA VALORES GRANDES DE N E M, PQ nº total de sub sequencias 2^n , casos totais para serem analizados 2^n+m
+  
